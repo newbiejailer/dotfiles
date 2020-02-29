@@ -1,0 +1,10 @@
+#!/bin/bash
+
+alias pc="proxychains4"
+alias ls="ls --color=auto"
+alias ll="ls -lha"
+alias ra="ranger"
+alias sudo="sudo -E"
+alias vim="nvim"
+alias vimrc="nvim $HOME/.config/nvim/init.vim"
+alias dic="ydcv"
