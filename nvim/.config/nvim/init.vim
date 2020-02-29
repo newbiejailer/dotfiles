@@ -16,6 +16,11 @@ Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
+" colors
+if &t_Co == 256
+    colorscheme pixelmuerto
+endif
+
 " basic settings
 let mapleader=" "
 syntax on
@@ -50,6 +55,7 @@ set scrolloff=5
 set tw=0
 set indentexpr=
 set backspace=indent,eol,start
+set path=.,**
 
 set laststatus=2
 set autochdir
@@ -65,7 +71,7 @@ noremap S :w<CR>
 noremap Q :q<CR>
 noremap R :source $MYVIMRC<CR>
 inoremap jj <ESC>
-vnoremap Y "+y
+vnoremap <LEADER>y "+y
 
 " window resize
 map <up> :res +5<CR>
@@ -74,12 +80,12 @@ map <left> :vertical resize-5<CR>
 map <right> :vertical resize+5<CR>
 
 " Enable true color
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-  set t_Co=256
-  endif
+" if exists('+termguicolors')
+"   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"   set termguicolors
+"   set t_Co=256
+"   endif
 
 " auto compile and run cpp file
 autocmd filetype cpp nnoremap <C-c> :w <bar> !clear && g++ -std=c++11 % -Wall -o %.exe && ./%.exe<CR>
