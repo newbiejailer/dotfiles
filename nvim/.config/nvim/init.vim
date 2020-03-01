@@ -13,8 +13,12 @@ Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'jiangmiao/auto-pairs'
+Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
+
+" ctrlp
+let g:ctrlp_working_path_mode = 'wra'
 
 " colors
 if &t_Co == 256
