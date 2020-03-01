@@ -1,3 +1,5 @@
+let mapleader=" "
+
 " plugin auto install
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
@@ -10,11 +12,23 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'preservim/nerdtree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
+
+" coc
+" Use tab for trigger completion with characters ahead and navigate.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" nerdtree
+map <LEADER>n :NERDTreeToggle<CR>
 
 " ctrlp
 let g:ctrlp_working_path_mode = 'wra'
@@ -25,7 +39,6 @@ if &t_Co == 256
 endif
 
 " basic settings
-let mapleader=" "
 syntax on
 
 set noswapfile
