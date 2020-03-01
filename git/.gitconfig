@@ -15,3 +15,7 @@
   st = status
   ci = commit --verbose
   df = diff
+  dfh = diff HEAD
+  lg = log -p
+  ap = add -p
+  co = checkout
