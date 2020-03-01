@@ -1,10 +1,16 @@
 [core]
   editor = nvim
+
+[push]
+  default = simple
+
 [user]
 	email = newbiejailer@gmail.com
 	name = newbiejailer
+
 [hub]
 	protocol = https
+
 [alias]
   st = status
   ci = commit --verbose
