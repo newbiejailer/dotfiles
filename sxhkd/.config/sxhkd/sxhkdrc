@@ -1,0 +1,11 @@
+# Increase volume
+super + equal
+  amixer sset Master 5%+
+
+# Decrease volume
+super + minus
+  amixer sset Master 5%-
+
+# Mute or unmute volume
+super + shift + m
+  amixer sset Master toggle
