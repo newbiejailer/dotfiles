@@ -1,0 +1,11 @@
+[core]
+  editor = nvim
+[user]
+	email = newbiejailer@gmail.com
+	name = newbiejailer
+[hub]
+	protocol = https
+[alias]
+  st = status
+  ci = commit --verbose
+  df = diff
