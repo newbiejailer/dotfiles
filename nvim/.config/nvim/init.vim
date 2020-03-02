@@ -86,8 +86,9 @@ nnoremap Y y$
 vnoremap <LEADER>y "+y
 
 " Terminal
+autocmd TermOpen term://* startinsert
 tnoremap <Esc> <C-\><C-n>
-nnoremap <silent> <LEADER>t :bo 15sp +term<CR>i
+nnoremap <silent> <LEADER>t :bo 15sp +term<CR>
 tnoremap <LEADER>t <C-\><C-n><C-w>q
 
 " Window resize
@@ -161,10 +162,8 @@ func! CompileRunGcc()
 		exec "!g++ % -o %<"
 		exec "!time ./%<"
 	elseif &filetype == 'cpp'
-		set splitbelow
 		exec "!g++ -std=c++11 % -Wall -o %<"
-		:sp
-		:res -15
+		:bo 10sp
 		:term ./%<
 	elseif &filetype == 'java'
 		exec "!javac %"
@@ -172,8 +171,7 @@ func! CompileRunGcc()
 	elseif &filetype == 'sh'
 		:!time bash %
 	elseif &filetype == 'python'
-		set splitbelow
-		:sp
+		:bo sp
 		:term python %
 	elseif &filetype == 'html'
 		silent! exec "!".g:mkdp_browser." % &"
@@ -185,8 +183,7 @@ func! CompileRunGcc()
 	elseif &filetype == 'dart'
 		CocCommand flutter.run
 	elseif &filetype == 'go'
-		set splitbelow
-		:sp
+		:bo sp
 		:term go run %
 	endif
 endfunc
