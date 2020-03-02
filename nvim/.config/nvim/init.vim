@@ -82,7 +82,13 @@ noremap S :w<CR>
 noremap Q :q<CR>
 noremap R :source $MYVIMRC<CR>
 inoremap jj <ESC>
+nnoremap Y y$
 vnoremap <LEADER>y "+y
+
+" Terminal
+tnoremap <Esc> <C-\><C-n>
+nnoremap <silent> <LEADER>t :bo 15sp +term<CR>i
+tnoremap <LEADER>t <C-\><C-n><C-w>q
 
 " Window resize
 map <up> :res +2<CR>
@@ -146,3 +152,41 @@ let g:UltiSnipsJumpForwardTrigger="<c-s>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories= [$HOME.'/.config/nvim/UltiSnips', 'UltiSnips']
+
+" Compile function
+noremap <LEADER>r :call CompileRunGcc()<CR>
+func! CompileRunGcc()
+	exec "w"
+	if &filetype == 'c'
+		exec "!g++ % -o %<"
+		exec "!time ./%<"
+	elseif &filetype == 'cpp'
+		set splitbelow
+		exec "!g++ -std=c++11 % -Wall -o %<"
+		:sp
+		:res -15
+		:term ./%<
+	elseif &filetype == 'java'
+		exec "!javac %"
+		exec "!time java %<"
+	elseif &filetype == 'sh'
+		:!time bash %
+	elseif &filetype == 'python'
+		set splitbelow
+		:sp
+		:term python %
+	elseif &filetype == 'html'
+		silent! exec "!".g:mkdp_browser." % &"
+	elseif &filetype == 'markdown'
+		exec "MarkdownPreview"
+	elseif &filetype == 'tex'
+		silent! exec "VimtexStop"
+		silent! exec "VimtexCompile"
+	elseif &filetype == 'dart'
+		CocCommand flutter.run
+	elseif &filetype == 'go'
+		set splitbelow
+		:sp
+		:term go run %
+	endif
+endfunc
