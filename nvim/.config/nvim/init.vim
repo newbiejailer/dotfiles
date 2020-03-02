@@ -14,8 +14,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'preservim/nerdtree'
 Plug 'jiangmiao/auto-pairs'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/fzf'
 
 call plug#end()
 
