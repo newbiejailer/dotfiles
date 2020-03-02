@@ -1,30 +1,39 @@
 let mapleader=" "
 
-" plugin auto install
+" Plugin auto install
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" plugin
+" Plugins
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'preservim/nerdtree'
 Plug 'jiangmiao/auto-pairs'
+
+" Auto completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf'
+
+" Fuzzy find
+Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 call plug#end()
 
-" colors
+" Colors
 if &t_Co == 256
     colorscheme pixelmuerto
 endif
 
-" basic settings
+" Basic settings
 syntax on
 
 set noswapfile
@@ -63,7 +72,7 @@ set laststatus=2
 set autochdir
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-" basic map
+" Basic map
 noremap J 5j
 noremap K 5k
 noremap <LEADER><CR> :nohlsearch<CR>
@@ -75,13 +84,20 @@ noremap R :source $MYVIMRC<CR>
 inoremap jj <ESC>
 vnoremap <LEADER>y "+y
 
-" window resize
-map <up> :res +5<CR>
-map <down> :res -5<CR>
-map <left> :vertical resize-5<CR>
-map <right> :vertical resize+5<CR>
+" Window resize
+map <up> :res +2<CR>
+map <down> :res -2<CR>
+map <left> :vertical resize-2<CR>
+map <right> :vertical resize+2<CR>
 
-" auto compile and run cpp file
+" Fzf mappings
+nnoremap <silent> <leader>o :Files<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+
+" Nerdtree
+map <LEADER>n :NERDTreeToggle<CR>
+
+" Auto compile and run cpp file
 autocmd filetype cpp nnoremap <C-c> :w <bar> !clear && g++ -std=c++11 % -Wall -o %.exe && ./%.exe<CR>
 
 " Customize our status line
@@ -90,7 +106,7 @@ set statusline+=[%{&ff}]
 set statusline+=%=
 set statusline+=[\%03.3b/\%02.2B]\ [POS=%04v]
 
-" coc
+" Coc
 " TextEdit might fail if hidden is not set.
 set hidden
 
@@ -112,7 +128,7 @@ set shortmess+=c
 " diagnostics appear/become resolved.
 set signcolumn=yes
 
-" use <tab> for trigger completion and navigate to the next complete item
+" Use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
@@ -123,8 +139,10 @@ inoremap <silent><expr> <Tab>
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
 
-" nerdtree
-map <LEADER>n :NERDTreeToggle<CR>
-
-" ctrlp
-let g:ctrlp_working_path_mode = 'wra'
+" Ultisnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-s>"
+let g:UltiSnipsJumpForwardTrigger="<c-s>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories= [$HOME.'/.config/nvim/UltiSnips', 'UltiSnips']
