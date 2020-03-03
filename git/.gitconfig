@@ -1,21 +1,23 @@
 [core]
-  editor = nvim
+    editor = nvim
 
 [push]
-  default = simple
+    default = simple
 
 [user]
-	email = newbiejailer@gmail.com
-	name = newbiejailer
+    email = newbiejailer@gmail.com
+    name = newbiejailer
 
 [hub]
-	protocol = https
+    protocol = https
 
 [alias]
-  st = status
-  ci = commit --verbose
-  df = diff
-  dfh = diff HEAD
-  lg = log -p
-  ap = add -p
-  co = checkout
+    st = status
+    ci = commit --verbose
+    df = diff
+    dfh = diff HEAD
+    lg = log -p
+    ap = add -p
+    co = checkout
+[credential]
+	helper = cache --timeout=14400
