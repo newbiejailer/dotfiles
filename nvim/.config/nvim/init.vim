@@ -190,3 +190,5 @@ func! CompileRunGcc()
 		:term go run %
 	endif
 endfunc
+
+" test git credential
