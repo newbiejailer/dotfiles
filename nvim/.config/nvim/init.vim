@@ -59,14 +59,17 @@ filetype plugin indent on
 set mouse-=a
 set encoding=utf-8
 set expandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set scrolloff=5
 set tw=0
 set indentexpr=
 set backspace=indent,eol,start
 set path=.,**
+
+set list
+set listchars=tab:▸\ ,eol:¬
 
 set laststatus=2
 set autochdir
@@ -103,9 +106,6 @@ nnoremap <silent> <leader>b :Buffers<CR>
 
 " Nerdtree
 map <LEADER>n :NERDTreeToggle<CR>
-
-" Auto compile and run cpp file
-autocmd filetype cpp nnoremap <C-c> :w <bar> !clear && g++ -std=c++11 % -Wall -o %.exe && ./%.exe<CR>
 
 " Customize our status line
 set statusline=%f%m%r%h%w\
@@ -153,6 +153,9 @@ let g:UltiSnipsJumpForwardTrigger="<c-s>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories= [$HOME.'/.config/nvim/UltiSnips', 'UltiSnips']
+
+" Vim commentary
+autocmd filetype cpp setlocal commentstring=//\ %s
 
 " Compile function
 noremap <LEADER>r :call CompileRunGcc()<CR>

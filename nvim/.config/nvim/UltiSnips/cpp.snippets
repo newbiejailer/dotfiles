@@ -1,0 +1,22 @@
+snippet lctree "leet code tree related problems"
+#include <iostream>
+
+#include "tree_handler.hpp"
+
+using namespace std;
+
+class Solution {
+public:
+	${1:type} ${2:func_name}(${3:parameters}) {
+		$0
+	}
+};
+
+int main() {
+	string tree = "[1, 2, null, 3]";
+	TreeNode* root = stringToTreeNode(tree);
+	$1 ret = Solution().$2();
+
+	return 0;
+}
+endsnippet
