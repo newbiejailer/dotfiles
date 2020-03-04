@@ -19,5 +19,6 @@
 	lg = log -p
 	ap = add -p
 	co = checkout
-[credential]
-	helper = cache --timeout=14400
+
+[include]
+	path = ~/.gitcredential
