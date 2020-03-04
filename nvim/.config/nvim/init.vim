@@ -14,6 +14,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'preservim/nerdtree'
 Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/goyo.vim'
 
 " Auto completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -156,6 +157,14 @@ let g:UltiSnipsSnippetDirectories= [$HOME.'/.config/nvim/UltiSnips', 'UltiSnips'
 
 " Vim commentary
 autocmd filetype cpp setlocal commentstring=//\ %s
+
+" Goyo
+function! s:goyo_enter()
+    set number
+    set relativenumber
+endfunction
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+nnoremap <LEADER>g :Goyo<CR>
 
 " Compile function
 noremap <LEADER>r :call CompileRunGcc()<CR>
