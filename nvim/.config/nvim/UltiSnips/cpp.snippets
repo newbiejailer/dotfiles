@@ -20,3 +20,23 @@ int main() {
 	return 0;
 }
 endsnippet
+
+
+snippet lc "leet code common template"
+#include <iostream>
+
+using namespace std;
+
+class Solution {
+public:
+	${1:type} ${2:func_name}(${3:parameters}) {
+		$0
+	}
+};
+
+int main() {
+	$1 ret = Solution().$2();
+
+	return 0;
+}
+endsnippet

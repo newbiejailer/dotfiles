@@ -68,6 +68,7 @@ set tw=0
 set indentexpr=
 set backspace=indent,eol,start
 set path=.,**
+set cino+=g0
 
 set list
 set listchars=tab:▸\ ,eol:¬
