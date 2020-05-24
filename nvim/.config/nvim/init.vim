@@ -14,7 +14,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'preservim/nerdtree'
 Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/goyo.vim'
 
 " Auto completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -26,6 +25,9 @@ Plug 'junegunn/fzf.vim'
 " Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
+" Game
+Plug 'ThePrimeagen/vim-be-good'
 
 call plug#end()
 
@@ -104,6 +106,7 @@ map <right> :vertical resize+2<CR>
 
 " Fzf mappings
 nnoremap <silent> <leader>o :Files<CR>
+nnoremap <silent> <leader>p :GFiles<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 
 " Nerdtree
@@ -148,6 +151,18 @@ inoremap <silent><expr> <Tab>
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
 
+" coc code navigation.
+nmap <leader>gd <Plug>(coc-definition)
+nmap <leader>gy <Plug>(coc-type-definition)
+nmap <leader>gi <Plug>(coc-implementation)
+nmap <leader>gr <Plug>(coc-references)
+nmap <leader>g[ <Plug>(coc-diagnostic-prev)
+nmap <leader>g] <Plug>(coc-diagnostic-next)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
 " Ultisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-s>"
@@ -156,16 +171,11 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories= [$HOME.'/.config/nvim/UltiSnips', 'UltiSnips']
 
+" python provider
+let g:python3_host_prog="$HOME/anaconda3/bin/python3"
+
 " Vim commentary
 autocmd filetype cpp setlocal commentstring=//\ %s
-
-" Goyo
-function! s:goyo_enter()
-    set number
-    set relativenumber
-endfunction
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-nnoremap <LEADER>g :Goyo<CR>
 
 " Compile function
 noremap <LEADER>r :call CompileRunGcc()<CR>
