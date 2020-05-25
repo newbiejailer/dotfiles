@@ -55,10 +55,7 @@ set smartcase
 
 set nocompatible
 set showcmd
-filetype on
-filetype indent on
-filetype plugin on
-filetype plugin indent on
+filetype indent plugin on
 set mouse-=a
 set encoding=utf-8
 set expandtab
@@ -96,7 +93,7 @@ vnoremap <LEADER>y "+y
 autocmd TermOpen term://* startinsert
 tnoremap <Esc> <C-\><C-n>
 nnoremap <silent> <LEADER>t :bo 15sp +term<CR>
-tnoremap <LEADER>t <C-\><C-n><C-w>q
+" tnoremap <LEADER>t <C-\><C-n><C-w>q
 
 " Window resize
 map <up> :res +2<CR>
@@ -127,7 +124,7 @@ set nobackup
 set nowritebackup
 
 " Give more space for displaying messages.
-set cmdheight=2
+set cmdheight=1
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -176,6 +173,9 @@ let g:python3_host_prog="$HOME/anaconda3/bin/python3"
 
 " Vim commentary
 autocmd filetype cpp setlocal commentstring=//\ %s
+
+" yaml file indent
+autocmd filetype yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " Compile function
 noremap <LEADER>r :call CompileRunGcc()<CR>
