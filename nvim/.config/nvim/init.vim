@@ -77,8 +77,6 @@ set autochdir
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Basic map
-noremap J 5j
-noremap K 5k
 noremap <LEADER><CR> :nohlsearch<CR>
 noremap ; :
 noremap s <nop>
