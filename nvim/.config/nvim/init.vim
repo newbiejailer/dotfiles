@@ -76,6 +76,8 @@ set laststatus=2
 set autochdir
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+set colorcolumn=80
+
 " Basic map
 noremap <LEADER><CR> :nohlsearch<CR>
 noremap ; :
@@ -108,10 +110,10 @@ nnoremap <silent> <leader>b :Buffers<CR>
 map <LEADER>n :NERDTreeToggle<CR>
 
 " Customize our status line
-set statusline=%f%m%r%h%w\
-set statusline+=[%{&ff}]
-set statusline+=%=
-set statusline+=[\%03.3b/\%02.2B]\ [POS=%04v]
+" set statusline=%f%m%r%h%w\
+" set statusline+=[%{&ff}]
+" set statusline+=%=
+" set statusline+=[\%03.3b/\%02.2B]\ [POS=%04v]
 
 " Coc
 " TextEdit might fail if hidden is not set.
