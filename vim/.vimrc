@@ -1,21 +1,5 @@
 let mapleader=" "
 
-" Plugin auto install
-if empty(glob('~/.vim/autoload/plug.vim'))
-  !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-" Plugins
-call plug#begin('~/.config/nvim/plugged')
-
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'jiangmiao/auto-pairs'
-
-call plug#end()
-
 " Basic settings
 syntax on
 
@@ -35,9 +19,6 @@ set smartcase
 
 set nocompatible
 set showcmd
-filetype on
-filetype indent on
-filetype plugin on
 filetype plugin indent on
 set mouse-=a
 set encoding=utf-8
