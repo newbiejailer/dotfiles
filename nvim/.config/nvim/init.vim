@@ -42,7 +42,7 @@ syntax on
 set noswapfile
 set number
 set relativenumber
-set cursorline
+" set cursorline
 set wrap
 set wildmenu
 
@@ -77,6 +77,7 @@ set autochdir
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 set colorcolumn=80
+" highlight colorcolumn ctermbg=236
 
 " Basic map
 noremap <LEADER><CR> :nohlsearch<CR>
