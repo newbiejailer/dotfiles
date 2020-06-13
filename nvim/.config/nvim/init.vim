@@ -111,10 +111,12 @@ nnoremap <silent> <leader>b :Buffers<CR>
 map <LEADER>n :NERDTreeToggle<CR>
 
 " Customize our status line
-" set statusline=%f%m%r%h%w\
-" set statusline+=[%{&ff}]
-" set statusline+=%=
-" set statusline+=[\%03.3b/\%02.2B]\ [POS=%04v]
+set statusline=%f%m%r%h%w\
+set statusline+=[%{&ff}]
+set statusline+=%=
+set statusline+=%{coc#status()}
+set statusline+=%=
+set statusline+=[\%03.3b/\%02.2B]\ [POS=%04v]
 
 " Coc
 " TextEdit might fail if hidden is not set.
@@ -125,7 +127,7 @@ set nobackup
 set nowritebackup
 
 " Give more space for displaying messages.
-set cmdheight=1
+" set cmdheight=1
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -160,6 +162,17 @@ nmap <leader>g] <Plug>(coc-diagnostic-next)
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 " Ultisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
