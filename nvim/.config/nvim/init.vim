@@ -26,15 +26,23 @@ Plug 'junegunn/fzf.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-" Game
-Plug 'ThePrimeagen/vim-be-good'
+" Colorscheme
+Plug 'sainnhe/gruvbox-material'
 
 call plug#end()
 
 " Colors
-if &t_Co == 256
-    colorscheme pixelmuerto
+" if &t_Co == 256
+"     colorscheme pixelmuerto
+" endif
+
+if has('termguicolors')
+  set termguicolors
 endif
+
+set background=dark
+let g:gruvbox_material_background = 'hard'
+colorscheme gruvbox-material
 
 " Basic settings
 syntax on
