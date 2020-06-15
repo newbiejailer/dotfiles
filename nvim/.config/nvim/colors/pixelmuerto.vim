@@ -114,7 +114,7 @@ let s:colors256 = [
             \ ["TaglistTagName","none", "16",   "219",  "",         ""   ]]
 
 let s:colorvim7 = [
-            \ ["Pmenu",         "",     "",  "246",  "",         ""   ],
+            \ ["Pmenu",         "",     "",  "239",  "",         ""   ],
             \ ["SignColumn",         "",     "",  "0",  "",         ""   ],
             \ ["PmenuSel",      "", 	 "",  "93",  "",         ""   ],
             \ ["PmenuSbar",     "",     "",  "243",   "",         ""   ],
