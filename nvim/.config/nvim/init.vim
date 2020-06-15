@@ -26,20 +26,20 @@ Plug 'junegunn/fzf.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-" Colorscheme
-Plug 'arcticicestudio/nord-vim'
-
 " Syntax highlight
 Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
 " Colors
-if (has("termguicolors"))
-  set termguicolors
+if &t_Co == 256
+    " If we're on a 256-color terminal, use pixelmuerto color scheme
+    colorscheme pixelmuerto
+else
+    " Else fall back to ron
+    colorscheme ron
+    hi CursorLine term=bold cterm=bold guibg=Grey40
 endif
-
-colorscheme nord
 
 " Basic settings
 syntax on
@@ -199,33 +199,33 @@ autocmd filetype yaml setlocal ts=2 sts=2 sw=2 expandtab
 " Compile function
 noremap <LEADER>r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
-	exec "w"
-	if &filetype == 'c'
-		exec "!g++ % -o %<"
-		exec "!time ./%<"
-	elseif &filetype == 'cpp'
-		exec "!g++ -std=c++11 % -Wall -o %<"
-		:bo 10sp
-		:term ./%<
-	elseif &filetype == 'java'
-		exec "!javac %"
-		exec "!time java %<"
-	elseif &filetype == 'sh'
-		:!time bash %
-	elseif &filetype == 'python'
-		:bo sp
-		:term python %
-	elseif &filetype == 'html'
-		silent! exec "!".g:mkdp_browser." % &"
-	elseif &filetype == 'markdown'
-		exec "MarkdownPreview"
-	elseif &filetype == 'tex'
-		silent! exec "VimtexStop"
-		silent! exec "VimtexCompile"
-	elseif &filetype == 'dart'
-		CocCommand flutter.run
-	elseif &filetype == 'go'
-		:bo sp
-		:term go run %
-	endif
+    exec "w"
+    if &filetype == 'c'
+        exec "!g++ % -o %<"
+        exec "!time ./%<"
+    elseif &filetype == 'cpp'
+        exec "!g++ -std=c++11 % -Wall -o %<"
+        :bo 10sp
+        :term ./%<
+    elseif &filetype == 'java'
+        exec "!javac %"
+        exec "!time java %<"
+    elseif &filetype == 'sh'
+        :!time bash %
+    elseif &filetype == 'python'
+        :bo sp
+        :term python %
+    elseif &filetype == 'html'
+        silent! exec "!".g:mkdp_browser." % &"
+    elseif &filetype == 'markdown'
+        exec "MarkdownPreview"
+    elseif &filetype == 'tex'
+        silent! exec "VimtexStop"
+        silent! exec "VimtexCompile"
+    elseif &filetype == 'dart'
+        CocCommand flutter.run
+    elseif &filetype == 'go'
+        :bo sp
+        :term go run %
+    endif
 endfunc
