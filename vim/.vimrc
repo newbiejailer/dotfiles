@@ -6,7 +6,7 @@ syntax on
 set noswapfile
 set number
 set relativenumber
-set cursorline
+" set cursorline
 set wrap
 set wildmenu
 
@@ -58,9 +58,3 @@ map <up> :res +2<CR>
 map <down> :res -2<CR>
 map <left> :vertical resize-2<CR>
 map <right> :vertical resize+2<CR>
-
-" Customize our status line
-set statusline=%f%m%r%h%w\
-set statusline+=[%{&ff}]
-set statusline+=%=
-set statusline+=[\%03.3b/\%02.2B]\ [POS=%04v]
