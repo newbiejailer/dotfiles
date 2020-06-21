@@ -20,7 +20,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Fuzzy find
-Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Snippets
@@ -68,7 +68,7 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set scrolloff=5
+" set scrolloff=5
 set tw=0
 set indentexpr=
 set backspace=indent,eol,start
@@ -82,7 +82,7 @@ set laststatus=2
 set autochdir
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-set colorcolumn=80
+" set colorcolumn=80
 " highlight colorcolumn ctermbg=236
 
 " Basic map
@@ -98,7 +98,8 @@ vnoremap <LEADER>y "+y
 
 " Terminal
 autocmd TermOpen term://* startinsert
-tnoremap <Esc> <C-\><C-n>
+tnoremap jj <C-\><C-n>
+" tnoremap <Esc> <C-\><C-n>
 nnoremap <silent> <LEADER>t :bo 15sp +term<CR>
 " tnoremap <LEADER>t <C-\><C-n><C-w>q
 
