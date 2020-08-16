@@ -12,9 +12,11 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdtree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-rooter'
 
 " Auto completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -29,6 +31,9 @@ Plug 'honza/vim-snippets'
 
 " Syntax highlight
 Plug 'sheerun/vim-polyglot'
+
+" wx app develop
+Plug 'chemzqm/wxapp.vim'
 
 call plug#end()
 
@@ -86,7 +91,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " highlight colorcolumn ctermbg=236
 
 " Basic map
-noremap <LEADER><CR> :nohlsearch<CR>
+noremap <leader><CR> :nohlsearch<CR>
 noremap ; :
 noremap s <nop>
 noremap S :w<CR>
@@ -94,14 +99,14 @@ noremap Q :q<CR>
 noremap R :source $MYVIMRC<CR>
 inoremap jj <ESC>
 nnoremap Y y$
-vnoremap <LEADER>y "+y
+vnoremap <leader>y "+y
 
 " Terminal
 autocmd TermOpen term://* startinsert
 tnoremap jj <C-\><C-n>
 " tnoremap <Esc> <C-\><C-n>
-nnoremap <silent> <LEADER>t :bo 15sp +term<CR>
-" tnoremap <LEADER>t <C-\><C-n><C-w>q
+nnoremap <silent> <leader>t :bo 15sp +term<CR>
+" tnoremap <leader>t <C-\><C-n><C-w>q
 
 " Window resize
 map <up> :res +2<CR>
@@ -114,12 +119,21 @@ nnoremap <silent> <leader>o :Files<CR>
 nnoremap <silent> <leader>p :GFiles<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 
+" Git mappings
+nmap <leader>gs :G<CR>
+nmap <leader>gh :diffget //2<CR>
+nmap <leader>gl :diffget //3<CR>
+
 " Nerdtree
-map <LEADER>n :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
+
+" use <++> as a placeholder
+noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 " Customize our status line
 set statusline=%f%m%r%h%w\
-set statusline+=[%{&ff}]
+set statusline+=[%{&ff}]\
+set statusline+=%{FugitiveStatusline()}
 set statusline+=%=
 set statusline+=%{coc#status()}
 set statusline+=%=
@@ -165,6 +179,12 @@ nmap <leader>gi <Plug>(coc-implementation)
 nmap <leader>gr <Plug>(coc-references)
 nmap <leader>g[ <Plug>(coc-diagnostic-prev)
 nmap <leader>g] <Plug>(coc-diagnostic-next)
+nmap <leader>rr <Plug>(coc-rename)
+
+" Search map
+nnoremap <leader>ghw :h <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>pw :CocSearch <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>prw :Rg <C-R>=expand("<cword>")<CR><CR>
 
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
@@ -192,14 +212,21 @@ let g:UltiSnipsSnippetDirectories= [$HOME.'/.config/nvim/UltiSnips', 'UltiSnips'
 " python provider
 let g:python3_host_prog="$HOME/anaconda3/bin/python3"
 
+" fzf
+let g:fzf_layout = { "window": { "width": 0.8, "height": 0.8 } }
+let $FZF_DEFAULT_OPTS="--reverse"
+
 " Vim commentary
 autocmd filetype cpp setlocal commentstring=//\ %s
 
 " yaml file indent
 autocmd filetype yaml setlocal ts=2 sts=2 sw=2 expandtab
 
+" javascript file indent
+autocmd filetype javascript setlocal ts=2 sts=2 sw=2 expandtab
+
 " Compile function
-noremap <LEADER>r :call CompileRunGcc()<CR>
+noremap <leader>r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
