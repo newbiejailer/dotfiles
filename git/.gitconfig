@@ -20,5 +20,5 @@
 	ap = add -p
 	co = checkout
 
-[include]
-	path = ~/.gitcredential
+[credential]
+    helper = store
